@@ -1,22 +1,30 @@
-# Guía de como usar
+# youtube-download
 
-## instalar libreria pytube
+Scripts para descargar videos y audio de YouTube desde la terminal.
+
+## Requisitos
 
 ```bash
-pip3 install pytube
+pip install yt-dlp
 ```
-## ajecutar programa
 
-Para descargar un link a mp3
+> También necesitas tener `ffmpeg` instalado en tu sistema.
+
+## Uso
+
+Descargar un video como MP3:
 ```bash
 python3 yt-link-to-mp3.py
 ```
-Para descargar un link a mp4
+
+Descargar un video como MP4:
 ```bash
 python3 yt-link-to-mp4.py
 ```
-Para descargar un link(palylsit) a mp3(palylist)
+
+Descargar una playlist completa como MP3:
 ```bash
 python3 yt-playlist-to-mp3.py
 ```
 
+Los archivos se guardan en carpetas `music/` o `videos/` según el script.
