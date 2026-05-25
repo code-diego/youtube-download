@@ -1,10 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Environment
+.env
+
+# Downloads
 music/
 videos/
 *.mp3
 *.mp4
+*.m4a
+*.webm
+*.part
+*.ytdl
+*.temp
 
-__pycache__/
+# Local tooling
+.agents/
+.codex/
+.vscode/
+.idea/
 
-
-kali uchis - red moon in venus/
-alvaro/
+# OS
+.DS_Store
