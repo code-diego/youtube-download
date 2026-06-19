@@ -8,10 +8,7 @@ Descarga videos o audio de YouTube usando `yt-dlp`.
 pip install yt-dlp
 ```
 
-Además necesitas **ffmpeg** para convertir a MP3 (y para mergers de video+audio):
-- **Windows**: `winget install ffmpeg` o descargalo desde https://ffmpeg.org
-- **Linux**: `sudo apt install ffmpeg`
-- **macOS**: `brew install ffmpeg`
+> También necesitas tener `ffmpeg` instalado en tu sistema.
 
 ## Uso
 

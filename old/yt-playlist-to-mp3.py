@@ -1,25 +1,29 @@
-from pytube import Playlist
+import yt_dlp
 import os
 
-def download_playlist_mp3(url, output_path = None):
-    playlist = Playlist(url)
-    try :
-        test = playlist.title
-    except:
-        print('Error: Playlist no encontrada')
-        return
-    for videoyt in playlist.videos:
-        try:
-            video = videoyt.streams.filter(only_audio=True).first()
-            out_file = video.download(output_path)
-            base, ext = os.path.splitext(out_file)
-            new_file = base + '.mp3'
-            os.rename(out_file, new_file)
-            videoname = video.title
-            print(f'(listo ✓) -> {videoname} ')
-        except:
-            print(f'✕ error ✕ con {videoname} ')        
-            
+def download_playlist_mp3(url, output_path='music'):
+    os.makedirs(output_path, exist_ok=True)
+    options = {
+        'format': 'bestaudio/best',
+        'outtmpl': f'{output_path}/%(title)s.%(ext)s',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+        }],
+        'quiet': True,
+        'no_warnings': True,
+    }
+    try:
+        with yt_dlp.YoutubeDL(options) as ydl:
+            info = ydl.extract_info(url, download=False)
+            total = len(info['entries'])
+            print(f'Playlist: {info["title"]} ({total} videos)\n')
+        options['quiet'] = False
+        options['progress_hooks'] = [lambda d: print(f'(✓) {d["filename"].split("/")[-1]}') if d['status'] == 'finished' else None]
+        with yt_dlp.YoutubeDL(options) as ydl:
+            ydl.download([url])
+    except Exception as e:
+        print('Error:', e)
 
 if __name__ == '__main__':
     print('================================================================================================================')
